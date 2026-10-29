@@ -292,6 +292,26 @@ tw-passage {
   color: #5b6272;
 }
 
+/* Bouton de téléchargement des outils du lecteur */
+.telecharger {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4em 1em;
+  margin: 0 0 -0.6em;
+}
+.telecharger a {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #356bac;
+  border-radius: 999px;
+  padding: 0.45em 1.2em;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+.telecharger a:hover { background-color: #244d80; }
+.telecharger span { font-size: 0.88em; font-style: italic; color: #5b6272; }
+
 /* Liens */
 tw-link, .enchantment-link {
   color: #356bac;
@@ -345,7 +365,7 @@ Pour offrir à chaque enfant un livre achevé, dont il ou elle puisse être fier
 &lt;div class=&quot;entrees&quot;&gt;[[Commencer le livre-&gt;Prologue]]&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;visuels&quot;&gt;&lt;img src=&quot;images/fiches/fiche_recit.jpg&quot; alt=&quot;La fiche récit remplie par Mei&quot;&gt;&lt;img src=&quot;images/fiches/fiche_personnage.jpg&quot; alt=&quot;La fiche personnage de Rambo, remplie par Mei&quot;&gt;&lt;img class=&quot;pleine&quot; src=&quot;images/fiches/fiche_situation_3.jpg&quot; alt=&quot;Une fiche situation de Mei, avec ses choix au dé&quot;&gt;&lt;img class=&quot;large&quot; src=&quot;images/fiches/fiche_dessins.jpg&quot; alt=&quot;La fiche de dessins de Mei&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="L&#x27;arbre de l&#x27;histoire" tags="" position="1100,-150" size="100,100">&lt;div class=&quot;arbre&quot;&gt;
 # La Lune de Rambo
-&lt;span class=&quot;arbre-sous-titre&quot;&gt;Tous les chemins de l&#x27;histoire imaginée par Mei&lt;/span&gt;&lt;div class=&quot;intro-arbre&quot;&gt;Un arbre de décision est un schéma qui montre toutes les suites possibles d&#x27;une histoire, ou d&#x27;un programme informatique. Chaque case est une étape, ici un chapitre, et chaque flèche part d&#x27;une condition : le résultat du dé, un fragment déjà coché sur la carte, ou le choix du lecteur. En suivant les flèches, on vérifie qu&#x27;aucun chemin ne mène nulle part : c&#x27;est grâce à cet outil que chaque parcours de //La Lune de Rambo// conduit bien à une fin.&lt;/div&gt;
+&lt;span class=&quot;arbre-sous-titre&quot;&gt;Tous les chemins de l&#x27;histoire imaginée par Mei&lt;/span&gt;&lt;div class=&quot;intro-arbre&quot;&gt;Un arbre de décision est un schéma qui montre toutes les suites possibles d&#x27;une histoire, ou d&#x27;un programme informatique. Chaque case est une étape, ici un chapitre, et chaque flèche part d&#x27;une condition : le résultat du dé, un fragment déjà coché sur la fiche, ou le choix du lecteur. En suivant les flèches, on vérifie qu&#x27;aucun chemin ne mène nulle part : c&#x27;est grâce à cet outil que chaque parcours de //La Lune de Rambo// conduit bien à une fin.&lt;/div&gt;
 &lt;img src=&quot;images/arbre.svg&quot; alt=&quot;L&#x27;arbre de toutes les branches de l&#x27;histoire&quot;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Prologue" tags="" position="600,0" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Prologue. Rambo, gardien de la lune
@@ -366,7 +386,9 @@ Au loin brillait la Terre. C&#x27;était là que se trouvaient les morceaux manq
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 Dans ce livre, tu accompagneras Rambo à la recherche des six fragments de lune. Tu ne liras pas toujours les chapitres dans l&#x27;ordre : à la fin de certains passages, un lancer de dé t&#x27;indiquera le numéro du chapitre où poursuivre votre aventure. À d&#x27;autres moments, ce sera à toi de choisir le chemin.
 
-Avant de partir, prends le dé et la carte des fragments à retrouver. Chaque fois que Rambo récupérera un morceau de lune, coche le continent correspondant sur ta carte. Elle te permettra de garder la trace de vos découvertes et de savoir où poursuivre les recherches.
+Avant de partir, prends le dé et la fiche des fragments à retrouver. Chaque fois que Rambo récupérera un morceau de lune, coche le continent correspondant sur ta fiche. Elle te permettra de garder la trace de vos découvertes et de savoir où poursuivre les recherches.
+
+&lt;div class=&quot;telecharger&quot;&gt;&lt;a href=&quot;outils/Outils_du_lecteur_La_Lune_de_Rambo.pdf&quot; target=&quot;_blank&quot; download&gt;Télécharger la fiche des fragments et le dé&lt;/a&gt;&lt;span&gt;À imprimer avant de partir : une feuille A4, à découper.&lt;/span&gt;&lt;/div&gt;
 
 Tu peux maintenant tourner la page et commencer le voyage.
 
@@ -445,12 +467,12 @@ Entre deux barreaux de la rambarde, la lumière de la lune éclairait le planche
 
 Il reconnut les petits creux de la roche et le bord poli par le temps. Il y posa sa joue. Au milieu de cette ville étrangère, il avait retrouvé quelque chose de chez lui.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Europe retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Europe retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 L&#x27;oiseau gris se tenait près de la rambarde. Il regardait vers l&#x27;est, où les premiers nuages s&#x27;éclairaient. Au-delà des toits, d&#x27;autres terres attendaient, que Rambo n&#x27;avait jamais vues. Le chat rassembla le fragment contre lui et s&#x27;approcha des ailes entrouvertes.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
-[[Si le fragment d&#x27;Asie est déjà coché sur ta carte, poursuis au chapitre 16.-&gt;Chapitre 16]]
+[[Si le fragment d&#x27;Asie est déjà coché sur ta fiche, poursuis au chapitre 16.-&gt;Chapitre 16]]
 [[Sinon, poursuis au chapitre 9.-&gt;Chapitre 9]]
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-08.jpg&quot; alt=&quot;Un morceau de chez lui&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="Chapitre 9" tags="" position="400,1050" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 9. Par-delà les montagnes
@@ -513,12 +535,12 @@ Rambo avança dans l&#x27;allée. Autour des dormeurs se dessinaient de pâles p
 
 Il le trouva sous le dernier siège, enveloppé dans une couverture. Sa lumière traversait les plis du tissu.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Asie retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Asie retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 L&#x27;avion se mit à rouler, puis s&#x27;éleva vers l&#x27;ouest. Rambo s&#x27;installa contre le morceau de roche. Derrière les hublots, les premières maisons disparaissaient sous les nuages. Autour de lui, les voyageurs poursuivaient leur promenade sur la lune.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
-[[Si le fragment d&#x27;Europe est déjà coché sur ta carte, poursuis au chapitre 17.-&gt;Chapitre 17]]
+[[Si le fragment d&#x27;Europe est déjà coché sur ta fiche, poursuis au chapitre 17.-&gt;Chapitre 17]]
 [[Sinon, poursuis au chapitre 15.-&gt;Chapitre 15]]
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-14.jpg&quot; alt=&quot;Les voyageurs de la lune&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Chapitre 15" tags="" position="1100,1500" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 15. Vers les toits de Paris
@@ -591,16 +613,16 @@ Lorsqu&#x27;il repartit, Rambo le suivit. Les petites traces traversaient des cr
 # Chapitre 21. Entre les dunes et la mer
 Le sable glissa sur les bords du fragment lorsque Rambo le souleva. Autour de lui, les dunes retombèrent lentement. Une dernière coulée descendit le long d&#x27;une pente, puis le désert s&#x27;immobilisa. Le vent reprit son travail et traça de fines rides à sa surface.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Afrique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Afrique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 Rambo rejoignit le rivage. Une sterne arctique tournait au-dessus de l&#x27;eau. Elle connaissait le chemin des deux pôles et s&#x27;apprêtait à gagner l&#x27;Amérique. Entre les vagues, une tortue luth leva la tête. Sa carapace sombre était longue comme une barque. Elle partait vers l&#x27;Océanie.
 
 L&#x27;oiseau descendit près du chat. La tortue s&#x27;approcha du sable. Rambo regarda les ailes, puis le large dos qui affleurait. Il lui restait encore des terres à rejoindre.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
-[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta carte, poursuis au chapitre 30.-&gt;Chapitre 30]]
+[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
-Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta carte, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : poursuis au chapitre 22, en Amérique.-&gt;Chapitre 22]]
 [[Un nombre impair : poursuis au chapitre 26, en Océanie.-&gt;Chapitre 26]]
@@ -643,16 +665,16 @@ L&#x27;un des flamants se pencha. Son bec traversa la surface, puis sa tête dis
 # Chapitre 25. Les deux lunes
 Une ride passa sur l&#x27;eau, puis le reflet se reforma. Rambo y chercha la lune entière qu&#x27;il avait aperçue. Elle n&#x27;y était plus. Dans le lac comme dans le ciel, le même morceau manquait. Il garda un instant les pattes dans l&#x27;eau. Sous la surface, il ne sentait plus que le sel.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Amérique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Amérique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 Il quitta le grand miroir blanc et poursuivit sa route vers l&#x27;océan. Là où les rivières rejoignaient la mer, une sterne arctique tournait au-dessus des vagues. Elle allait repartir vers l&#x27;Afrique. Une tortue luth se reposait dans l&#x27;écume, tournée vers l&#x27;Océanie.
 
 Rambo déposa ses fragments sur la rive pour les rassembler. Leur lumière se mêlait aux reflets de l&#x27;eau. Puis il les reprit et s&#x27;approcha des voyageurs.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
-[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta carte, poursuis au chapitre 30.-&gt;Chapitre 30]]
+[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
-Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta carte, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : poursuis au chapitre 18, en Afrique.-&gt;Chapitre 18]]
 [[Un nombre impair : poursuis au chapitre 26, en Océanie.-&gt;Chapitre 26]]
@@ -699,14 +721,14 @@ Il s&#x27;y engagea. Sous lui, le courant emportait déjà de petits cristaux. I
 
 Il se retourna vers la grotte. Au fond, les vers luisants brillaient toujours. Le départ du fragment n&#x27;avait rien changé à leur ciel. Il resta un moment à les regarder.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Océanie retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Océanie retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 Sur la plage, une sterne arctique attendait le vent qui la porterait vers l&#x27;Amérique. Une tortue luth laissait les vagues laver sa carapace avant de repartir vers l&#x27;Afrique. Rambo les rejoignit avec ses morceaux de lune. Il connaissait maintenant le creux entre deux ailes, la courbe d&#x27;un dos où se reposer. Il s&#x27;approcha sans attendre qu&#x27;on l&#x27;appelle.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
-[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta carte, poursuis au chapitre 30.-&gt;Chapitre 30]]
+[[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
-Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta carte, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée l&#x27;attendait. &#x27;&#x27;Lance le dé pour connaître sa prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : poursuis au chapitre 22, en Amérique.-&gt;Chapitre 22]]
 [[Un nombre impair : poursuis au chapitre 18, en Afrique.-&gt;Chapitre 18]]
@@ -755,7 +777,7 @@ Rambo souffla encore. Le froid gagna la mer et passa au-delà de l&#x27;horizon.
 
 Lorsque le vent tomba, Rambo s&#x27;approcha de la marmite. Dans l&#x27;eau refroidie, le dernier fragment avait repris sa forme. Il le posa auprès des autres. Les six morceaux étaient réunis. En les rapprochant, il reconnut les pentes et les rochers qui formaient autrefois le haut de sa lune.
 
-&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Antarctique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta carte des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;fragment&quot;&gt;&lt;img class=&quot;icone-fragment&quot; src=&quot;images/icone_fragment.jpg&quot; alt=&quot;&quot;&gt;&lt;span class=&quot;fragment-texte&quot;&gt;&lt;span class=&quot;fragment-titre&quot;&gt;Fragment d&#x27;Antarctique retrouvé&lt;/span&gt;&lt;span class=&quot;fragment-consigne&quot;&gt;Coche-le sur ta fiche des fragments.&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 [[Poursuis au chapitre 34.-&gt;Chapitre 34]]
