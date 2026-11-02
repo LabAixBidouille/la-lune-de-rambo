@@ -9,7 +9,91 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play La Lune de Rambo.</tw-noscript></noscript></tw-story>
-<tw-storydata name="La Lune de Rambo" startnode="2" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="11CE03EE-C948-4E27-8436-88D7566DF88F" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
+<tw-storydata name="La Lune de Rambo" startnode="2" creator="Twine" creator-version="2.12.1" format="Harlowe" format-version="3.3.9" ifid="11CE03EE-C948-4E27-8436-88D7566DF88F" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+/* Dé à lancer : à droite du bloc consigne et choix, centré en hauteur sur ce bloc ;
+   il montre la face tirée et ne choisit jamais à la place du lecteur */
+.de {
+  display: flex;
+  align-items: center;
+  gap: 1.6em;
+}
+.de-texte { flex: 1; min-width: 0; }
+.lancer {
+  flex: none;
+  position: relative;
+  display: flex;
+}
+.de-virtuel {
+  position: relative;
+  width: 4.4em;
+  height: 4.4em;
+  padding: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background: #ffffff;
+  border: 2px solid #356bac;
+  border-radius: 0.8em;
+  box-shadow: 0 3px 0 rgba(53, 107, 172, 0.35);
+  cursor: pointer;
+  transform: rotate(-5deg);
+  transition: transform 0.15s ease;
+}
+.de-virtuel:hover { transform: rotate(5deg); }
+.de-virtuel.roule { animation: roule 0.3s linear infinite; }
+@keyframes roule {
+  0% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(180deg) translateY(-3px); }
+  100% { transform: rotate(360deg) translateY(0); }
+}
+.de-virtuel i {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background: #356bac;
+  place-self: center;
+  visibility: hidden;
+}
+.de-virtuel[data-face="0"]::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: 2.6em;
+  line-height: 1;
+  color: #356bac;
+}
+.de-virtuel[data-face="1"] i:nth-child(5),
+.de-virtuel[data-face="2"] i:is(:nth-child(1), :nth-child(9)),
+.de-virtuel[data-face="3"] i:is(:nth-child(1), :nth-child(5), :nth-child(9)),
+.de-virtuel[data-face="4"] i:is(:nth-child(1), :nth-child(3), :nth-child(7), :nth-child(9)),
+.de-virtuel[data-face="5"] i:is(:nth-child(1), :nth-child(3), :nth-child(5), :nth-child(7), :nth-child(9)),
+.de-virtuel[data-face="6"] i:is(:nth-child(1), :nth-child(3), :nth-child(4), :nth-child(6), :nth-child(7), :nth-child(9)) {
+  visibility: visible;
+}
+/* Le résultat ne compte pas dans la hauteur : le dé reste fixe, au milieu du bloc */
+.resultat {
+  position: absolute;
+  top: calc(100% + 0.6em);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-style: italic;
+  font-size: 0.9em;
+  color: #5b6272;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .de { gap: 1em; }
+  .de-virtuel { width: 3.6em; height: 3.6em; padding: 0.4em; }
+  .de-virtuel i { width: 0.6em; height: 0.6em; }
+  .de-virtuel[data-face="0"]::after { font-size: 2em; }
+}
+/* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
 @font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/Lora-italique.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500 600; font-display: swap; src: url("fonts/CormorantGaramond.woff2") format("woff2"); }
@@ -346,7 +430,27 @@ tw-sidebar { display: none; }
 .retour tw-link:hover, .retour .enchantment-link:hover {
   background-color: #356bac;
   color: #ffffff;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="Bouton couverture" tags="header" position="1100,-300" size="100,100">(unless: (passage:)&#x27;s name is &quot;Page de garde&quot;)[&lt;div class=&quot;retour&quot;&gt;[[Couverture-&gt;Page de garde]]&lt;/div&gt;]</tw-passagedata><tw-passagedata pid="2" name="Page de garde" tags="" position="600,-300" size="100,100">&lt;div class=&quot;garde&quot;&gt;&lt;div class=&quot;garde-image&quot;&gt;&lt;img src=&quot;images/couverture.jpg&quot; alt=&quot;Rambo devant les paysages de son voyage, sous la lune brisée&quot;&gt;&lt;/div&gt;&lt;div class=&quot;garde-texte&quot;&gt;&lt;span class=&quot;surtitre&quot;&gt;Une histoire dont le lecteur est le héros&lt;/span&gt;
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+document.addEventListener('click', function (evenement) {
+  var de = evenement.target.closest('.de-virtuel');
+  if (!de || de.classList.contains('roule')) return;
+  var resultat = de.parentNode.querySelector('.resultat');
+  var face = 1 + Math.floor(Math.random() * 6);
+  var etapes = 0;
+  de.classList.add('roule');
+  resultat.textContent = '';
+  var minuterie = setInterval(function () {
+    de.setAttribute('data-face', 1 + Math.floor(Math.random() * 6));
+    etapes += 1;
+    if (etapes >= 7) {
+      clearInterval(minuterie);
+      de.setAttribute('data-face', face);
+      de.classList.remove('roule');
+      resultat.textContent = 'Le dé affiche ' + face + '.';
+    }
+  }, 75);
+});
+</script><tw-passagedata pid="1" name="Bouton couverture" tags="header" position="1100,-300" size="100,100">(unless: (passage:)&#x27;s name is &quot;Page de garde&quot;)[&lt;div class=&quot;retour&quot;&gt;[[Couverture-&gt;Page de garde]]&lt;/div&gt;]</tw-passagedata><tw-passagedata pid="2" name="Page de garde" tags="" position="600,-300" size="100,100">&lt;div class=&quot;garde&quot;&gt;&lt;div class=&quot;garde-image&quot;&gt;&lt;img src=&quot;images/couverture.jpg&quot; alt=&quot;Rambo devant les paysages de son voyage, sous la lune brisée&quot;&gt;&lt;/div&gt;&lt;div class=&quot;garde-texte&quot;&gt;&lt;span class=&quot;surtitre&quot;&gt;Une histoire dont le lecteur est le héros&lt;/span&gt;
 # La Lune de Rambo
 &lt;span class=&quot;nom-auteur&quot;&gt;Mei&lt;/span&gt;&lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;&lt;div class=&quot;menu&quot;&gt;&lt;div class=&quot;entree&quot;&gt;[[Commencer l&#x27;histoire-&gt;Prologue]]&lt;span class=&quot;synopsis&quot;&gt;Un jour, les humains ont arraché le sommet de la lune et dispersé ses fragments sur la Terre. Rambo, le chat qui veille sur elle depuis toujours, fait naître un escalier de glace et part à leur recherche. Des toits de Paris aux glaces de l&#x27;Antarctique, des dunes qui respirent aux étoiles cachées sous la terre, un monde étrange l&#x27;attend. Saura-t-il réparer sa lune avant qu&#x27;elle ne s&#x27;éteigne ?&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;secondaires&quot;&gt;[[Comment est née cette histoire-&gt;Comment est née cette histoire]][[L&#x27;arbre de l&#x27;histoire-&gt;L&#x27;arbre de l&#x27;histoire]]&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Comment est née cette histoire" tags="" position="850,-300" size="100,100">&lt;div class=&quot;contexte&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Comment est née cette histoire
@@ -402,11 +506,13 @@ Rambo s&#x27;y engagea. Sous lui, la Terre grandissait lentement. Il distinguait
 Il poursuivit sa descente. Il n&#x27;avait jamais construit d&#x27;escalier aussi long et ne savait pas encore où se poserait la dernière marche.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 L&#x27;escalier le conduirait-il jusqu&#x27;à la Terre ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[1 ou 2 : poursuis au chapitre 3.-&gt;Chapitre 3]]
 [[3 ou 4 : poursuis au chapitre 4.-&gt;Chapitre 4]]
 [[5 ou 6 : poursuis au chapitre 10.-&gt;Chapitre 10]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-02.png&quot; alt=&quot;L&#x27;escalier de glace&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Chapitre 3" tags="de" position="850,300" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 3. Un autre chemin
 La dernière marche se posa sur un îlot de glace. Rambo y descendit. Autour de lui s&#x27;élevaient de grandes aiguilles transparentes, traversées de bulles et de grains sombres. Entre deux pointes, il aperçut une immense courbe dorée. Ce n&#x27;était pas la Terre. Il avait rejoint les anneaux d&#x27;une autre planète.
@@ -418,10 +524,12 @@ Il leva les yeux. Où était la Terre ? La planète lui cachait une partie du 
 À mesure qu&#x27;il descendait, les cercles de glace s&#x27;éloignaient derrière lui. La Terre grandissait. Bientôt, il distingua les continents, puis les nuages. Le vent vint à sa rencontre.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Où poserait-il les pattes ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 4, en France.-&gt;Chapitre 4]]
 [[Un nombre impair : poursuis au chapitre 10, au Japon.-&gt;Chapitre 10]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-03.jpg&quot; alt=&quot;Un autre chemin&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="Chapitre 4" tags="" position="400,450" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 4. Les pavés sous les pattes
 Les dernières marches descendirent entre les toits de Paris. Lorsque la glace toucha les pavés, Rambo y posa une patte, puis l&#x27;autre. La pierre gardait encore la chaleur du jour. Autour de lui passaient des voix, des pas, des odeurs inconnues. Il se retourna vers l&#x27;escalier. Déjà, les marches les plus basses fondaient et l&#x27;eau coulait entre les pavés.
@@ -437,10 +545,12 @@ Il s&#x27;approcha d&#x27;un pilier et y fit courir son givre. Au contact du fer
 Il regarda l&#x27;eau couler entre les pierres. Tout là-haut, le fragment brillait près d&#x27;une étoile. Pour l&#x27;atteindre, il lui faudrait des ailes…
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Quel chemin le mènerait là-haut ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[Un nombre impair : poursuis au chapitre 6.-&gt;Chapitre 6]]
 [[Un nombre pair : poursuis au chapitre 7.-&gt;Chapitre 7]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-05.jpg&quot; alt=&quot;Une lueur au-dessus des toits&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="Chapitre 6" tags="" position="250,750" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 6. Les ailes grises
 Un froissement d&#x27;ailes passa au-dessus des pavés. Un grand oiseau gris vint se poser près de Rambo. Il leva la tête vers le sommet de la tour, puis s&#x27;accroupit à côté du chat, les ailes légèrement écartées.
@@ -503,10 +613,12 @@ Un fragment était caché dans l&#x27;un des avions. Il en sentait la présence 
 Au loin, un avion prit de la vitesse et quitta le sol. Rambo le suivit des yeux jusqu&#x27;aux nuages. « Pas celui-là, j&#x27;espère… » Il lui fallait trouver le bon appareil avant que le fragment ne s&#x27;éloigne à son tour.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Comment retrouver le fragment parmi tous ces avions ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[1, 2 ou 3 : poursuis au chapitre 12.-&gt;Chapitre 12]]
 [[4, 5 ou 6 : poursuis au chapitre 13.-&gt;Chapitre 13]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-11.jpg&quot; alt=&quot;Les oiseaux de métal&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Chapitre 12" tags="" position="700,1350" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 12. Les petites ailes de la nuit
 Un papillon de nuit vint se poser près de Rambo. Ses ailes grises frémissaient dans l&#x27;air chaud. Il repartit, décrivit un cercle, puis revint, toujours attiré dans la même direction.
@@ -569,11 +681,13 @@ Il resta un moment à les regarder. Sur la Terre, la lumière de sa lune s&#x27;
 Il ferma les yeux. Au-delà des océans, trois présences lui répondirent, lointaines mais distinctes. Plus au sud, il en devina une quatrième, si faible qu&#x27;elle s&#x27;effaça presque aussitôt. Il rassembla ses deux morceaux de lune. Il commencerait par l&#x27;un des trois appels les plus proches.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Lequel de ces appels suivrait-il d&#x27;abord ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[1 ou 2 : continue ton vol vers l&#x27;Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
 [[3 ou 4 : continue ton vol vers l&#x27;Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
 [[5 ou 6 : continue ton vol vers l&#x27;Océanie et poursuis au chapitre 26.-&gt;Chapitre 26]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-17.jpg&quot; alt=&quot;Les appels lointains&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="23" name="Chapitre 18" tags="de" position="150,1900" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 18. La marée de sable
 Rambo avait atteint la Namibie, en Afrique. Dans un village de la côte, un ballon roula jusqu&#x27;à ses pattes. Il bondit de côté. Une enfant courut le reprendre, lui adressa un signe et rejoignit les autres joueurs. Le chat longea le terrain, les oreilles tournées vers leurs appels.
@@ -585,10 +699,12 @@ La nuit venue, la lune brisée parut au-dessus des dunes. Alors le sable se soul
 Rambo connaissait ce mouvement. Il avait souvent observé les marées depuis la lune. Un fragment était enfoui dans le désert, et le sable suivait son appel. Il descendit entre deux dunes. Déjà, les pentes changeaient derrière lui et ses traces disparaissaient.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Comment trouver son chemin dans cette marée de sable ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 19.-&gt;Chapitre 19]]
 [[Un nombre impair : poursuis au chapitre 20.-&gt;Chapitre 20]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-18.jpg&quot; alt=&quot;La marée de sable&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="24" name="Chapitre 19" tags="" position="50,2050" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 19. Ce que le sable découvre
 Du sommet de la dune, Rambo regardait passer la marée. Le sable montait vers lui, s&#x27;arrêtait, puis redescendait en laissant de longues lignes sur les pentes. Il resta là une grande partie de la nuit, les yeux tournés vers les creux que le mouvement découvrait.
@@ -622,10 +738,12 @@ L&#x27;oiseau descendit près du chat. La tortue s&#x27;approcha du sable. Rambo
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Lance le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole l&#x27;Atlantique jusqu&#x27;en Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse l&#x27;océan Indien jusqu&#x27;en Océanie et poursuis au chapitre 26.-&gt;Chapitre 26]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-21.jpg&quot; alt=&quot;Entre les dunes et la mer&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="Chapitre 22" tags="de" position="600,1900" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 22. Le miroir de sel
 En Bolivie, au cœur de l&#x27;Amérique du Sud, Rambo traversa un village où l&#x27;on chargeait des sacs de sel dans un camion. La conductrice vérifia les cordes qui retenaient le chargement, puis ouvrit sa portière. Rambo passa sous le véhicule. Le moteur démarra au-dessus de lui ; il ressortit aussitôt de l&#x27;autre côté et poursuivit son chemin.
@@ -637,10 +755,12 @@ Il avança parmi les nuages. Sous ses pattes, quelques centimètres d&#x27;eau s
 Lorsque la lune parut, il baissa les yeux. Dans le lac, elle était entière. Il regarda le ciel, où le haut de la lune manquait toujours, puis le reflet intact. Il s&#x27;approcha jusqu&#x27;à effleurer l&#x27;eau du museau. La présence du fragment venait d&#x27;en dessous, de l&#x27;autre côté du miroir.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Comment atteindre l&#x27;autre côté du miroir ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[1, 2 ou 3 : poursuis au chapitre 23.-&gt;Chapitre 23]]
 [[4, 5 ou 6 : poursuis au chapitre 24.-&gt;Chapitre 24]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-22.jpg&quot; alt=&quot;Le miroir de sel&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Chapitre 23" tags="" position="500,2050" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 23. De l&#x27;autre côté du ciel
 Rambo posa une patte sur son reflet. Elle traversa l&#x27;eau sans rencontrer le fond. Il avança encore, et le monde bascula doucement.
@@ -674,10 +794,12 @@ Rambo déposa ses fragments sur la rive pour les rassembler. Leur lumière se m�
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Lance le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole l&#x27;Atlantique jusqu&#x27;en Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse le Pacifique jusqu&#x27;en Océanie et poursuis au chapitre 26.-&gt;Chapitre 26]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-25.jpg&quot; alt=&quot;Les deux lunes&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="Chapitre 26" tags="de" position="1050,1900" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 26. Les étoiles sous la terre
 Rambo avait atteint la Nouvelle-Zélande, en Océanie. Il s&#x27;arrêta sur une plage étroite, ses fragments contre lui. Les vagues roulaient de petits galets jusqu&#x27;à ses pattes. Au-delà du sable, les arbres descendaient presque jusqu&#x27;à l&#x27;eau.
@@ -691,10 +813,12 @@ Il longea la berge. L&#x27;air sentait la pierre humide. Au-dessus de lui, quelq
 Rambo s&#x27;arrêta sous ce ciel souterrain. Parmi les lueurs bleues se cachait un fragment de lune. Il regarda la hauteur du plafond, puis la rivière à ses pieds. Il lui faudrait quitter la berge pour l&#x27;atteindre.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Comment rejoindre la lumière au-dessus de la rivière ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 27.-&gt;Chapitre 27]]
 [[Un nombre impair : poursuis au chapitre 28.-&gt;Chapitre 28]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-26.jpg&quot; alt=&quot;Les étoiles sous la terre&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="Chapitre 27" tags="" position="950,2050" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 27. Au fil de l&#x27;eau sombre
 Une forme sombre remonta la rivière. C&#x27;était une anguille, longue comme trois chats, dont le dos portait des cicatrices anciennes. Les anguilles de ces eaux pouvaient vivre près de cent ans.
@@ -728,10 +852,12 @@ Sur la plage, une sterne arctique attendait le vent qui la porterait vers l&#x27
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Lance le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole le Pacifique jusqu&#x27;en Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse l&#x27;océan Indien jusqu&#x27;en Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-29.jpg&quot; alt=&quot;Les étoiles qui demeuraient&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="Chapitre 30" tags="de" position="600,2400" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 30. Le feu sur la banquise
 Rambo rassembla ses cinq fragments et s&#x27;approcha de l&#x27;eau. L&#x27;appel du dernier morceau lui parvenait du sud, plus faible que les autres. Au large, un souffle s&#x27;éleva, puis une longue nageoire frappa la surface. Il suivit des yeux une baleine à bosse qui longeait la côte.
@@ -745,10 +871,12 @@ Après plusieurs jours, des blocs de glace apparurent. Ils devinrent plus nombre
 Rambo sauta sur la glace. Il y retrouvait un froid familier, mais une odeur de fumée lui parvint. Derrière un iceberg, des humains entouraient une marmite. Dans l&#x27;eau qui frémissait au-dessus du feu, le dernier fragment fondait lentement. Ils préparaient l&#x27;élixir.
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
+&lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
 Comment s&#x27;approcher de la marmite sans être vu ? &#x27;&#x27;Lance le dé.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 31.-&gt;Chapitre 31]]
 [[Un nombre impair : poursuis au chapitre 32.-&gt;Chapitre 32]]
+&lt;/div&gt;&lt;div class=&quot;lancer&quot;&gt;&lt;button class=&quot;de-virtuel&quot; type=&quot;button&quot; data-face=&quot;0&quot; aria-label=&quot;Lancer le dé&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/button&gt;&lt;span class=&quot;resultat&quot; aria-live=&quot;polite&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;&lt;div class=&quot;illustration&quot;&gt;&lt;img src=&quot;images/chapitre-30.jpg&quot; alt=&quot;Le feu sur la banquise&quot;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="36" name="Chapitre 31" tags="" position="500,2550" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Chapitre 31. Le chant sous la glace
 Une voix monta de sous la banquise. Rambo l&#x27;entendit tout près de lui, puis plus loin, comme si la glace lui répondait. Un phoque chantait dans l&#x27;eau sombre.
