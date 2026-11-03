@@ -439,7 +439,52 @@ tw-sidebar { display: none; }
 .retour tw-link:hover, .retour .enchantment-link:hover {
   background-color: #356bac;
   color: #ffffff;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+}
+
+/* Page « Comment est née cette histoire » (03/11/2026) : texte court centré, dessins de Mei en tête,
+   une phrase de sa fiche, puis ses fiches posées sur une table, en miniatures cliquables */
+.contexte-centre { max-width: 62em; text-align: center; }
+.contexte-centre h1 { font-size: 2.6em; margin: 0.2em 0 0; }
+.contexte-centre .separateur { justify-content: center; max-width: 24em; margin: 0.8em auto 1.6em; }
+.portraits { display: flex; justify-content: center; align-items: flex-end; gap: 2.4em; margin-bottom: 0.4em; }
+.portraits figure { margin: 0; }
+.portraits img { display: block; height: 9em; width: auto; margin: 0 auto; }
+.portraits figcaption { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.15em; color: #356bac; }
+.contexte-texte { max-width: 38em; margin: 0 auto; }
+.citation {
+  max-width: 30em;
+  margin: 2em auto;
+  padding: 1em 0;
+  border-top: 1px solid rgba(53, 107, 172, 0.35);
+  border-bottom: 1px solid rgba(53, 107, 172, 0.35);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1.4;
+  color: #244d80;
+}
+.citation .source { display: block; margin-top: 0.5em; font-family: "Lora", Georgia, serif; font-style: normal; font-size: 0.55em; color: #5b6272; }
+.table-fiches { margin: 2.6em auto 0; padding: 1.8em 1.5em; background: #eef3fa; border-radius: 14px; }
+.table-fiches .titre-table { display: block; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; font-size: 1.5em; color: #356bac; margin-bottom: 1.1em; }
+.miniatures { display: flex; justify-content: center; align-items: flex-start; flex-wrap: wrap; gap: 2.4em; }
+.miniatures figure { margin: 0; }
+.miniatures figcaption { margin-top: 0.8em; font-size: 0.95em; color: #5b6272; }
+.miniature { display: block; padding: 0; border: none; background: none; cursor: zoom-in; }
+.miniature img { display: block; height: 16em; width: auto; border-radius: 4px; box-shadow: 0 3px 12px rgba(43, 47, 58, 0.22); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.miniatures figure:nth-child(1) img { transform: rotate(-3deg); }
+.miniatures figure:nth-child(2) img { transform: rotate(1deg); }
+.miniatures figure:nth-child(3) img { transform: rotate(3deg); }
+.miniatures .miniature:hover img { transform: rotate(0) scale(1.05); box-shadow: 0 0 0 2px #356bac, 0 8px 20px rgba(43, 47, 58, 0.28); }
+.contexte-centre .credits { display: block; margin-top: 1.6em; }
+.agrandi { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 2vh 2vw; background: rgba(20, 40, 70, 0.85); cursor: zoom-out; }
+.agrandi img { max-width: 100%; max-height: 96vh; border-radius: 4px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); }
+@media (max-width: 600px) {
+  .portraits { gap: 0.8em; }
+  .portraits img { height: 6em; }
+  .miniature img { height: 11em; }
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
 document.addEventListener('click', function (evenement) {
   var de = evenement.target.closest('.de-virtuel');
   if (!de || de.classList.contains('roule')) return;
@@ -459,26 +504,40 @@ document.addEventListener('click', function (evenement) {
     }
   }, 75);
 });
+
+
+// Page de contexte : une miniature s'ouvre en grand, un clic referme
+document.addEventListener('click', function (evenement) {
+  var ouvert = document.querySelector('.agrandi');
+  if (ouvert) { ouvert.remove(); return; }
+  var miniature = evenement.target.closest('.miniature');
+  if (!miniature) return;
+  var fond = document.createElement('div');
+  fond.className = 'agrandi';
+  var image = document.createElement('img');
+  image.src = miniature.querySelector('img').src;
+  image.alt = miniature.querySelector('img').alt;
+  fond.appendChild(image);
+  document.body.appendChild(fond);
+});
+document.addEventListener('keydown', function (evenement) {
+  var ouvert = document.querySelector('.agrandi');
+  if (ouvert && evenement.key === 'Escape') ouvert.remove();
+});
 </script><tw-passagedata pid="1" name="Bouton couverture" tags="header" position="1100,-300" size="100,100">(unless: (passage:)&#x27;s name is &quot;Page de garde&quot;)[&lt;div class=&quot;retour&quot;&gt;[[Couverture-&gt;Page de garde]]&lt;/div&gt;]</tw-passagedata><tw-passagedata pid="2" name="Page de garde" tags="" position="600,-300" size="100,100">&lt;div class=&quot;garde&quot;&gt;&lt;div class=&quot;garde-image&quot;&gt;&lt;img src=&quot;images/couverture.jpg&quot; alt=&quot;Rambo devant les paysages de son voyage, sous la lune brisée&quot;&gt;&lt;/div&gt;&lt;div class=&quot;garde-texte&quot;&gt;&lt;span class=&quot;surtitre&quot;&gt;Une histoire dont le lecteur est le héros&lt;/span&gt;
 # La Lune de Rambo
-&lt;span class=&quot;nom-auteur&quot;&gt;Mei&lt;/span&gt;&lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;&lt;div class=&quot;menu&quot;&gt;&lt;div class=&quot;entree&quot;&gt;[[Commencer l&#x27;histoire-&gt;Prologue]]&lt;span class=&quot;synopsis&quot;&gt;Un jour, les humains ont arraché le sommet de la lune et dispersé ses fragments sur la Terre. Rambo, le chat qui veille sur elle depuis toujours, fait naître un escalier de glace et part à leur recherche. Des toits de Paris aux glaces de l&#x27;Antarctique, des dunes qui respirent aux étoiles cachées sous la terre, un monde étrange l&#x27;attend. Saura-t-il réparer sa lune avant qu&#x27;elle ne s&#x27;éteigne ?&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;secondaires&quot;&gt;[[Comment est née cette histoire-&gt;Comment est née cette histoire]][[L&#x27;arbre de l&#x27;histoire-&gt;L&#x27;arbre de l&#x27;histoire]]&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Comment est née cette histoire" tags="" position="850,-300" size="100,100">&lt;div class=&quot;contexte&quot;&gt;&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
+&lt;span class=&quot;nom-auteur&quot;&gt;Mei&lt;/span&gt;&lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;&lt;div class=&quot;menu&quot;&gt;&lt;div class=&quot;entree&quot;&gt;[[Commencer l&#x27;histoire-&gt;Prologue]]&lt;span class=&quot;synopsis&quot;&gt;Un jour, les humains ont arraché le sommet de la lune et dispersé ses fragments sur la Terre. Rambo, le chat qui veille sur elle depuis toujours, fait naître un escalier de glace et part à leur recherche. Des toits de Paris aux glaces de l&#x27;Antarctique, des dunes qui respirent aux étoiles cachées sous la terre, un monde étrange l&#x27;attend. Saura-t-il réparer sa lune avant qu&#x27;elle ne s&#x27;éteigne ?&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;secondaires&quot;&gt;[[Comment est née cette histoire-&gt;Comment est née cette histoire]][[L&#x27;arbre de l&#x27;histoire-&gt;L&#x27;arbre de l&#x27;histoire]]&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Comment est née cette histoire" tags="" position="850,-300" size="100,100">&lt;div class=&quot;contexte contexte-centre&quot;&gt;&lt;div class=&quot;contexte-tete&quot;&gt;&lt;div class=&quot;portraits&quot;&gt;&lt;figure&gt;&lt;img src=&quot;images/dessins/lune.png&quot; alt=&quot;La lune, dessiné par Mei&quot;&gt;&lt;figcaption&gt;La lune&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src=&quot;images/dessins/rambo.png&quot; alt=&quot;Rambo, dessiné par Mei&quot;&gt;&lt;figcaption&gt;Rambo&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img src=&quot;images/dessins/terre.png&quot; alt=&quot;La Terre, dessiné par Mei&quot;&gt;&lt;figcaption&gt;La Terre&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
 # Comment est née cette histoire
-Le mardi 27 octobre 2026, pendant les vacances d&#x27;automne, le L.A.B a animé l&#x27;atelier « Le livre dont tu es le héros » à la bibliothèque des Deux Ormes, l&#x27;une des bibliothèques Méjanes d&#x27;Aix-en-Provence. Huit enfants de 8 à 12 ans y ont inventé une histoire qui change selon les choix du lecteur, en l&#x27;écrivant situation par situation sur des fiches où chaque lancer de dé renvoie vers une autre situation. L&#x27;atelier est issu du projet européen Robots Meet Arts : derrière le récit, il s&#x27;agit de découvrir sans écran les notions qui structurent un programme informatique. Chaque lancer de dé est une condition, qui décide de la suite de l&#x27;histoire. Chaque choix ouvre un embranchement, et un chemin qui ramène à une situation déjà écrite forme une boucle.
+&lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;contexte-texte&quot;&gt;En octobre 2026, le L.A.B a animé l’atelier « La quête du curry, une histoire dont tu es le héros » dans les bibliothèques Méjanes d’Aix-en-Provence. Les enfants ont été accompagnés dans la création d’un récit complet, depuis l’invention des personnages jusqu’à la construction d’une intrigue reliant les différentes étapes de leur aventure.
 
-Écrire une telle histoire demande un travail créatif considérable. Il faut inventer un personnage et une quête, mais aussi penser l&#x27;histoire comme un réseau : prévoir à chaque étape plusieurs suites possibles, numéroter les situations, s&#x27;assurer que chaque chemin mène quelque part, et faire tenir tous ces fils ensemble sans perdre le sens du récit.
+Nous leur avons proposé d’introduire une part de hasard dans leur récit. Le résultat d’un lancer de dé pouvait modifier le déroulement de certains passages et conduire le lecteur vers un chapitre ou un autre.
 
-Mei a relevé ce défi avec beaucoup d&#x27;imagination. Elle a inventé Rambo, un chat gardien de la lune qui fait naître le givre de ses moustaches, et lui a confié une quête : retrouver les fragments de sa lune dispersés sur la Terre. C&#x27;est elle qui a imaginé l&#x27;escalier de glace, le fragment perché au sommet de la tour Eiffel, celui qui se cache dans un avion, et les humains finalement emprisonnés dans la glace.
+Les enfants ont ainsi exploré, sans écran, des notions liées à la pensée computationnelle, une manière de décomposer un problème et d’organiser les étapes pour le résoudre. Ils ont formulé des règles de type « si… alors… », créé des embranchements et réfléchi à la façon dont les chemins se rejoignent pour former une histoire cohérente.
 
-Avec //La Lune de Rambo//, Mei vous présente un récit onirique, où la lune, même brisée, continue de faire rêver tous ceux qui croisent ses fragments.
-
-Pour offrir à chaque enfant un livre achevé, dont il ou elle puisse être fier ou fière et avec lequel continuer à jouer, le L.A.B a prolongé chaque histoire à partir des idées de son jeune auteur ou de sa jeune autrice, puis l&#x27;a mise en forme, en s&#x27;aidant d&#x27;outils numériques, dont l&#x27;intelligence artificielle. Ce travail ne retire rien à celui des enfants : il s&#x27;appuie entièrement sur la créativité, l&#x27;imaginaire et les récits de celles et ceux qui ont participé à l&#x27;atelier.
-
-&lt;span class=&quot;credits&quot;&gt;Une histoire de Mei. Réalisation du livre : L.A.B, Laboratoire d&#x27;Aix-périmentation et de Bidouille.&lt;/span&gt;
-
-&lt;div class=&quot;entrees&quot;&gt;[[Commencer le livre-&gt;Prologue]]&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;visuels&quot;&gt;&lt;img src=&quot;images/fiches/fiche_recit.jpg&quot; alt=&quot;La fiche récit remplie par Mei&quot;&gt;&lt;img src=&quot;images/fiches/fiche_personnage.jpg&quot; alt=&quot;La fiche personnage de Rambo, remplie par Mei&quot;&gt;&lt;img class=&quot;pleine&quot; src=&quot;images/fiches/fiche_situation_3.jpg&quot; alt=&quot;Une fiche situation de Mei, avec ses choix au dé&quot;&gt;&lt;img class=&quot;large&quot; src=&quot;images/fiches/fiche_dessins.jpg&quot; alt=&quot;La fiche de dessins de Mei&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="L&#x27;arbre de l&#x27;histoire" tags="" position="1100,-150" size="100,100">&lt;div class=&quot;arbre&quot;&gt;
+Mei a choisi d’inventer un récit onirique. Un défi pour une histoire à embranchements, puisque l’atmosphère du rêve doit se maintenir et chaque étape garder sa magie, quel que soit le chemin emprunté.&lt;div class=&quot;citation&quot;&gt;« Les humains ont détruit le haut de la lune et il doit le récupérer. La lune est très précieuse pour faire un élixir de longue vie. »&lt;span class=&quot;source&quot;&gt;Mei, sur sa fiche récit&lt;/span&gt;&lt;/div&gt;Pour donner naissance à ce livre, le L.A.B a prolongé et mis en forme son récit à l’aide d’outils numériques. L’intelligence artificielle a notamment contribué à produire, dans le temps imparti, une histoire complète et agréable à lire. À son origine, il y a avant tout les idées, les personnages et les dessins de Mei.&lt;/div&gt;&lt;div class=&quot;table-fiches&quot;&gt;&lt;span class=&quot;titre-table&quot;&gt;Les fiches de l’atelier&lt;/span&gt;&lt;div class=&quot;miniatures&quot;&gt;&lt;figure&gt;&lt;button class=&quot;miniature&quot; type=&quot;button&quot; aria-label=&quot;Agrandir la fiche récit remplie par Mei&quot;&gt;&lt;img src=&quot;images/fiches/fiche_recit.jpg&quot; alt=&quot;la fiche récit remplie par Mei&quot;&gt;&lt;/button&gt;&lt;figcaption&gt;Le récit&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;button class=&quot;miniature&quot; type=&quot;button&quot; aria-label=&quot;Agrandir la fiche personnage de Rambo, remplie par Mei&quot;&gt;&lt;img src=&quot;images/fiches/fiche_personnage.jpg&quot; alt=&quot;la fiche personnage de Rambo, remplie par Mei&quot;&gt;&lt;/button&gt;&lt;figcaption&gt;Une fiche personnage&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;button class=&quot;miniature&quot; type=&quot;button&quot; aria-label=&quot;Agrandir une fiche situation de Mei, avec ses choix au dé&quot;&gt;&lt;img src=&quot;images/fiches/fiche_situation_3.jpg&quot; alt=&quot;une fiche situation de Mei, avec ses choix au dé&quot;&gt;&lt;/button&gt;&lt;figcaption&gt;Une fiche à embranchement&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;credits&quot;&gt;Une histoire de Mei.
+Réalisation du livre : Laboratoire d’Aix-périmentation et de Bidouille.&lt;/span&gt;&lt;div class=&quot;entrees&quot;&gt;[[Commencer le livre-&gt;Prologue]]&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="L&#x27;arbre de l&#x27;histoire" tags="" position="1100,-150" size="100,100">&lt;div class=&quot;arbre&quot;&gt;
 # La Lune de Rambo
-&lt;span class=&quot;arbre-sous-titre&quot;&gt;Tous les chemins de l&#x27;histoire imaginée par Mei&lt;/span&gt;&lt;div class=&quot;intro-arbre&quot;&gt;Un arbre de décision est un schéma qui montre toutes les suites possibles d&#x27;une histoire, ou d&#x27;un programme informatique. Chaque case est une étape, ici un chapitre, et chaque flèche part d&#x27;une condition : le résultat du dé, un fragment déjà coché sur la fiche, ou le choix du lecteur. En suivant les flèches, on vérifie qu&#x27;aucun chemin ne mène nulle part : c&#x27;est grâce à cet outil que chaque parcours de //La Lune de Rambo// conduit bien à une fin.&lt;/div&gt;
+&lt;span class=&quot;arbre-sous-titre&quot;&gt;Tous les chemins de l&#x27;histoire imaginée par Mei&lt;/span&gt;
 &lt;img src=&quot;images/arbre.svg&quot; alt=&quot;L&#x27;arbre de toutes les branches de l&#x27;histoire&quot;&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Prologue" tags="" position="600,0" size="100,100">&lt;div class=&quot;page&quot;&gt;&lt;div class=&quot;texte&quot;&gt;
 # Prologue. Rambo, gardien de la lune
