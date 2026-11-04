@@ -32,8 +32,8 @@ tw-story { overflow: clip; }
   position: relative;
   display: flex;
 }
-/* Le dé est un éclat de lune : il tourne sur lui-même puis montre le nombre tiré au milieu de la pierre,
-   en bleu cerclé de blanc ; il luit doucement tant qu'on ne l'a pas touché */
+/* Le dé est un éclat de lune : il gigote au repos pour montrer qu'on peut cliquer dessus, tourne sur
+   lui-même au clic puis montre le nombre tiré au milieu de la face claire de la pierre */
 .de-virtuel {
   position: relative;
   width: 7.2em;
@@ -50,10 +50,11 @@ tw-story { overflow: clip; }
   filter: drop-shadow(0 3px 4px rgba(53, 107, 172, 0.3));
   transition: transform 0.2s ease, filter 0.2s ease;
 }
-.de-virtuel[data-face="0"] { animation: lueur 2s ease-in-out infinite; }
-@keyframes lueur {
-  0%, 100% { filter: drop-shadow(0 3px 4px rgba(53, 107, 172, 0.3)); }
-  50% { filter: drop-shadow(0 0 12px rgba(120, 170, 230, 0.9)); }
+.de-virtuel[data-face="0"] { animation: gigote 1.6s ease-in-out infinite; }
+@keyframes gigote {
+  0%, 55%, 100% { transform: rotate(-6deg) translateY(0); filter: drop-shadow(0 3px 4px rgba(53, 107, 172, 0.3)); }
+  20% { transform: rotate(5deg) translateY(-5px); filter: drop-shadow(0 0 12px rgba(120, 170, 230, 0.9)); }
+  38% { transform: rotate(-9deg) translateY(0); }
 }
 .de-virtuel:hover { transform: rotate(6deg) scale(1.05); filter: drop-shadow(0 0 12px rgba(120, 170, 230, 0.9)); }
 .de-virtuel.roule { animation: roule 0.35s linear infinite; }
@@ -67,7 +68,11 @@ tw-story { overflow: clip; }
 .de-virtuel::after {
   content: attr(data-face);
   position: absolute;
-  inset: 0;
+  /* centré sur la face claire de l'éclat, un peu au-dessus du milieu de l'image */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 12%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +85,8 @@ tw-story { overflow: clip; }
   color: #356bac;
   text-shadow: 0 0 8px #ffffff, 0 0 3px #ffffff, 0 0 1px #ffffff;
 }
-.de-virtuel[data-face="0"]::after { content: "?"; }
+/* Rien au repos : l'éclat gigote, le nombre n'apparaît qu'après le lancer */
+.de-virtuel[data-face="0"]::after { content: ""; }
 /* Le résultat ne compte pas dans la hauteur : le dé reste fixe, au milieu du bloc */
 .resultat {
   position: absolute;
