@@ -68,22 +68,23 @@ tw-story { overflow: clip; }
 .de-virtuel::after {
   content: attr(data-face);
   position: absolute;
-  /* centré sur la face claire de l'éclat, un peu au-dessus du milieu de l'image */
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 12%;
+  /* centré sur la face claire de l'éclat, et plus grand que la pierre */
+  left: -1em;
+  right: -1em;
+  top: -1em;
+  bottom: calc(12% - 1em);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0.05em;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 600;
   font-variant-numeric: lining-nums;
-  font-size: 3.1em;
+  font-size: 6.4em;
   line-height: 1;
   color: #356bac;
-  text-shadow: 0 0 8px #ffffff, 0 0 3px #ffffff, 0 0 1px #ffffff;
+  /* ombre portée bleu nuit, et un liseré blanc pour se détacher de la pierre */
+  text-shadow: 0 0 2px #ffffff, 0 0 4px #ffffff, 3px 5px 0 rgba(36, 48, 90, 0.28), 4px 8px 10px rgba(36, 48, 90, 0.35);
+  pointer-events: none;
 }
 /* Rien au repos : l'éclat gigote, le nombre n'apparaît qu'après le lancer */
 .de-virtuel[data-face="0"]::after { content: ""; }
@@ -103,7 +104,7 @@ tw-story { overflow: clip; }
   .de { gap: 1em; }
   .de-virtuel { width: 4.4em; height: 4.4em; padding: 1.2em 1.1em 1.05em 1em; }
   .de-virtuel i { width: 0.5em; height: 0.5em; }
-  .de-virtuel::after { font-size: 2.4em; }
+  .de-virtuel::after { font-size: 4.8em; }
 }
 /* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
