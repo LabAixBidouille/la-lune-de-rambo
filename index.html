@@ -76,10 +76,10 @@ tw-story { overflow: clip; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  /* chiffres ronds et gras, plus doux que la police des titres */
+  font-family: "Fredoka", "Nunito", sans-serif;
   font-weight: 600;
-  font-variant-numeric: lining-nums;
-  font-size: 6.4em;
+  font-size: 5.6em;
   line-height: 1;
   color: #356bac;
   /* ombre portée bleu nuit, et un liseré blanc pour se détacher de la pierre */
@@ -104,9 +104,10 @@ tw-story { overflow: clip; }
   .de { gap: 1em; }
   .de-virtuel { width: 4.4em; height: 4.4em; padding: 1.2em 1.1em 1.05em 1em; }
   .de-virtuel i { width: 0.5em; height: 0.5em; }
-  .de-virtuel::after { font-size: 4.8em; }
+  .de-virtuel::after { font-size: 4.2em; }
 }
 /* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
+@font-face { font-family: "Fredoka"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("fonts/Fredoka.woff2") format("woff2"); }
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
 @font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/Lora-italique.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500 600; font-display: swap; src: url("fonts/CormorantGaramond.woff2") format("woff2"); }
