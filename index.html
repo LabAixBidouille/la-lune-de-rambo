@@ -32,8 +32,8 @@ tw-story { overflow: clip; }
   position: relative;
   display: flex;
 }
-/* Le dé est un éclat de lune : il tourne sur lui-même puis montre les points du tirage, bleu nuit
-   cerclés de blanc pour se lire sur la pierre ; il luit doucement tant qu'on ne l'a pas touché */
+/* Le dé est un éclat de lune : il tourne sur lui-même puis montre le nombre tiré au milieu de la pierre,
+   en bleu cerclé de blanc ; il luit doucement tant qu'on ne l'a pas touché */
 .de-virtuel {
   position: relative;
   width: 7.2em;
@@ -62,38 +62,25 @@ tw-story { overflow: clip; }
   50% { transform: rotate(180deg) translateY(-4px); }
   100% { transform: rotate(360deg) translateY(0); }
 }
-.de-virtuel i {
-  width: 0.62em;
-  height: 0.62em;
-  border-radius: 50%;
-  background: #356bac;
-  box-shadow: 0 0 0 2px #ffffff;
-  place-self: center;
-  visibility: hidden;
-}
-.de-virtuel[data-face="0"]::after {
-  content: "?";
+.de-virtuel i { display: none; }
+/* « ? » au repos, puis le nombre tiré, que le script inscrit dans data-face */
+.de-virtuel::after {
+  content: attr(data-face);
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0.1em;
+  padding-top: 0.05em;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 600;
-  font-size: 2.4em;
+  font-variant-numeric: lining-nums;
+  font-size: 3.1em;
   line-height: 1;
   color: #356bac;
-  text-shadow: 0 0 6px #ffffff, 0 0 2px #ffffff;
+  text-shadow: 0 0 8px #ffffff, 0 0 3px #ffffff, 0 0 1px #ffffff;
 }
-.de-virtuel[data-face="1"] i:nth-child(5),
-.de-virtuel[data-face="2"] i:is(:nth-child(1), :nth-child(9)),
-.de-virtuel[data-face="3"] i:is(:nth-child(1), :nth-child(5), :nth-child(9)),
-.de-virtuel[data-face="4"] i:is(:nth-child(1), :nth-child(3), :nth-child(7), :nth-child(9)),
-.de-virtuel[data-face="5"] i:is(:nth-child(1), :nth-child(3), :nth-child(5), :nth-child(7), :nth-child(9)),
-.de-virtuel[data-face="6"] i:is(:nth-child(1), :nth-child(3), :nth-child(4), :nth-child(6), :nth-child(7), :nth-child(9)) {
-  visibility: visible;
-}
+.de-virtuel[data-face="0"]::after { content: "?"; }
 /* Le résultat ne compte pas dans la hauteur : le dé reste fixe, au milieu du bloc */
 .resultat {
   position: absolute;
@@ -110,7 +97,7 @@ tw-story { overflow: clip; }
   .de { gap: 1em; }
   .de-virtuel { width: 4.4em; height: 4.4em; padding: 1.2em 1.1em 1.05em 1em; }
   .de-virtuel i { width: 0.5em; height: 0.5em; }
-  .de-virtuel[data-face="0"]::after { font-size: 1.9em; }
+  .de-virtuel::after { font-size: 2.4em; }
 }
 /* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
