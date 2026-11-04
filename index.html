@@ -32,34 +32,42 @@ tw-story { overflow: clip; }
   position: relative;
   display: flex;
 }
+/* Le dé est un éclat de lune : il tourne sur lui-même puis montre les points du tirage, bleu nuit
+   cerclés de blanc pour se lire sur la pierre ; il luit doucement tant qu'on ne l'a pas touché */
 .de-virtuel {
   position: relative;
-  width: 4.4em;
-  height: 4.4em;
-  padding: 0.5em;
+  width: 7.2em;
+  height: 7.2em;
+  padding: 2.1em 1.9em 1.9em 1.7em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  background: #ffffff;
-  border: 2px solid #356bac;
-  border-radius: 0.8em;
-  box-shadow: 0 3px 0 rgba(53, 107, 172, 0.35);
+  font-size: inherit;
+  background: url("images/eclat.png") no-repeat center / contain;
+  border: none;
   cursor: pointer;
-  transform: rotate(-5deg);
-  transition: transform 0.15s ease;
+  transform: rotate(-6deg);
+  filter: drop-shadow(0 3px 4px rgba(53, 107, 172, 0.3));
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
-.de-virtuel:hover { transform: rotate(5deg); }
-.de-virtuel.roule { animation: roule 0.3s linear infinite; }
+.de-virtuel[data-face="0"] { animation: lueur 2s ease-in-out infinite; }
+@keyframes lueur {
+  0%, 100% { filter: drop-shadow(0 3px 4px rgba(53, 107, 172, 0.3)); }
+  50% { filter: drop-shadow(0 0 12px rgba(120, 170, 230, 0.9)); }
+}
+.de-virtuel:hover { transform: rotate(6deg) scale(1.05); filter: drop-shadow(0 0 12px rgba(120, 170, 230, 0.9)); }
+.de-virtuel.roule { animation: roule 0.35s linear infinite; }
 @keyframes roule {
   0% { transform: rotate(0deg) translateY(0); }
-  50% { transform: rotate(180deg) translateY(-3px); }
+  50% { transform: rotate(180deg) translateY(-4px); }
   100% { transform: rotate(360deg) translateY(0); }
 }
 .de-virtuel i {
-  width: 0.75em;
-  height: 0.75em;
+  width: 0.62em;
+  height: 0.62em;
   border-radius: 50%;
   background: #356bac;
+  box-shadow: 0 0 0 2px #ffffff;
   place-self: center;
   visibility: hidden;
 }
@@ -70,11 +78,13 @@ tw-story { overflow: clip; }
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 0.1em;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 600;
-  font-size: 2.6em;
+  font-size: 2.4em;
   line-height: 1;
   color: #356bac;
+  text-shadow: 0 0 6px #ffffff, 0 0 2px #ffffff;
 }
 .de-virtuel[data-face="1"] i:nth-child(5),
 .de-virtuel[data-face="2"] i:is(:nth-child(1), :nth-child(9)),
@@ -98,9 +108,9 @@ tw-story { overflow: clip; }
 }
 @media (max-width: 600px) {
   .de { gap: 1em; }
-  .de-virtuel { width: 3.6em; height: 3.6em; padding: 0.4em; }
-  .de-virtuel i { width: 0.6em; height: 0.6em; }
-  .de-virtuel[data-face="0"]::after { font-size: 2em; }
+  .de-virtuel { width: 4.4em; height: 4.4em; padding: 1.2em 1.1em 1.05em 1em; }
+  .de-virtuel i { width: 0.5em; height: 0.5em; }
+  .de-virtuel[data-face="0"]::after { font-size: 1.9em; }
 }
 /* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
@@ -500,7 +510,7 @@ document.addEventListener('click', function (evenement) {
       clearInterval(minuterie);
       de.setAttribute('data-face', face);
       de.classList.remove('roule');
-      resultat.textContent = 'Le dé affiche ' + face + '.';
+      resultat.textContent = 'L’éclat de lune montre ' + face + '.';
     }
   }, 75);
 });
@@ -560,7 +570,7 @@ Au loin brillait la Terre. C&#x27;était là que se trouvaient les morceaux manq
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 Dans ce livre, tu accompagneras Rambo à la recherche des six fragments de lune. Tu ne liras pas toujours les chapitres dans l&#x27;ordre : à la fin de certains passages, un lancer de dé t&#x27;indiquera le numéro du chapitre où poursuivre votre aventure. À d&#x27;autres moments, ce sera à toi de choisir le chemin.
 
-Avant de partir, imprime ta fiche des fragments. Chaque fois que Rambo récupérera un morceau de lune, coche le continent correspondant sur ta fiche. Elle te permettra de garder la trace de vos découvertes et de savoir où poursuivre les recherches. Le dé, lui, t&#x27;attendra à côté des choix : il suffira de cliquer dessus.
+Avant de partir, imprime ta fiche des fragments. Chaque fois que Rambo récupérera un morceau de lune, coche le continent correspondant sur ta fiche. Elle te permettra de garder la trace de vos découvertes et de savoir où poursuivre les recherches. Le dé, lui, prendra la forme d&#x27;un éclat de lune, à côté des choix : il suffira de cliquer dessus.
 
 &lt;div class=&quot;telecharger&quot;&gt;&lt;a href=&quot;outils/Fiche_des_fragments_La_Lune_de_Rambo.pdf&quot; target=&quot;_blank&quot; download&gt;Télécharger la fiche des fragments&lt;/a&gt;&lt;span&gt;À imprimer avant de partir : une feuille A5, à garder près de toi pendant la lecture.&lt;/span&gt;&lt;/div&gt;
 
@@ -577,7 +587,7 @@ Il poursuivit sa descente. Il n&#x27;avait jamais construit d&#x27;escalier auss
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-L&#x27;escalier le conduirait-il jusqu&#x27;à la Terre ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+L&#x27;escalier le conduirait-il jusqu&#x27;à la Terre ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[1 ou 2 : poursuis au chapitre 3.-&gt;Chapitre 3]]
 [[3 ou 4 : poursuis au chapitre 4.-&gt;Chapitre 4]]
@@ -595,7 +605,7 @@ Il leva les yeux. Où était la Terre ? La planète lui cachait une partie du 
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Où poserait-il les pattes ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Où poserait-il les pattes ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 4, en France.-&gt;Chapitre 4]]
 [[Un nombre impair : poursuis au chapitre 10, au Japon.-&gt;Chapitre 10]]
@@ -616,7 +626,7 @@ Il regarda l&#x27;eau couler entre les pierres. Tout là-haut, le fragment brill
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Quel chemin le mènerait là-haut ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Quel chemin le mènerait là-haut ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[Un nombre impair : poursuis au chapitre 6.-&gt;Chapitre 6]]
 [[Un nombre pair : poursuis au chapitre 7.-&gt;Chapitre 7]]
@@ -684,7 +694,7 @@ Au loin, un avion prit de la vitesse et quitta le sol. Rambo le suivit des yeux 
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Comment retrouver le fragment parmi tous ces avions ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Comment retrouver le fragment parmi tous ces avions ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[1, 2 ou 3 : poursuis au chapitre 12.-&gt;Chapitre 12]]
 [[4, 5 ou 6 : poursuis au chapitre 13.-&gt;Chapitre 13]]
@@ -752,7 +762,7 @@ Il ferma les yeux. Au-delà des océans, trois présences lui répondirent, loin
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Lequel de ces appels suivrait-il d&#x27;abord ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Lequel de ces appels suivrait-il d&#x27;abord ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[1 ou 2 : continue ton vol vers l&#x27;Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
 [[3 ou 4 : continue ton vol vers l&#x27;Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
@@ -770,7 +780,7 @@ Rambo connaissait ce mouvement. Il avait souvent observé les marées depuis la 
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Comment trouver son chemin dans cette marée de sable ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Comment trouver son chemin dans cette marée de sable ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 19.-&gt;Chapitre 19]]
 [[Un nombre impair : poursuis au chapitre 20.-&gt;Chapitre 20]]
@@ -809,7 +819,7 @@ L&#x27;oiseau descendit près du chat. La tortue s&#x27;approcha du sable. Rambo
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur l&#x27;éclat de lune pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole l&#x27;Atlantique jusqu&#x27;en Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse l&#x27;océan Indien jusqu&#x27;en Océanie et poursuis au chapitre 26.-&gt;Chapitre 26]]
@@ -826,7 +836,7 @@ Lorsque la lune parut, il baissa les yeux. Dans le lac, elle était entière. Il
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Comment atteindre l&#x27;autre côté du miroir ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Comment atteindre l&#x27;autre côté du miroir ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[1, 2 ou 3 : poursuis au chapitre 23.-&gt;Chapitre 23]]
 [[4, 5 ou 6 : poursuis au chapitre 24.-&gt;Chapitre 24]]
@@ -865,7 +875,7 @@ Rambo déposa ses fragments sur la rive pour les rassembler. Leur lumière se m�
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur l&#x27;éclat de lune pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole l&#x27;Atlantique jusqu&#x27;en Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse le Pacifique jusqu&#x27;en Océanie et poursuis au chapitre 26.-&gt;Chapitre 26]]
@@ -884,7 +894,7 @@ Rambo s&#x27;arrêta sous ce ciel souterrain. Parmi les lueurs bleues se cachait
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Comment rejoindre la lumière au-dessus de la rivière ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Comment rejoindre la lumière au-dessus de la rivière ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 27.-&gt;Chapitre 27]]
 [[Un nombre impair : poursuis au chapitre 28.-&gt;Chapitre 28]]
@@ -923,7 +933,7 @@ Sur la plage, une sterne arctique attendait le vent qui la porterait vers l&#x27
 [[Si les cinq fragments d&#x27;Europe, d&#x27;Asie, d&#x27;Afrique, d&#x27;Amérique et d&#x27;Océanie sont cochés sur ta fiche, poursuis au chapitre 30.-&gt;Chapitre 30]]
 
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur le dé pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
+Sinon, une nouvelle traversée t&#x27;attend. &#x27;&#x27;Clique sur l&#x27;éclat de lune pour connaître ta prochaine destination.&#x27;&#x27; Si le continent indiqué est déjà coché sur ta fiche, prends l&#x27;autre chemin.
 
 [[Un nombre pair : grimpe sur le dos de la sterne, survole le Pacifique jusqu&#x27;en Amérique et poursuis au chapitre 22.-&gt;Chapitre 22]]
 [[Un nombre impair : grimpe sur le dos de la tortue, traverse l&#x27;océan Indien jusqu&#x27;en Afrique et poursuis au chapitre 18.-&gt;Chapitre 18]]
@@ -942,7 +952,7 @@ Rambo sauta sur la glace. Il y retrouvait un froid familier, mais une odeur de f
 
 &lt;div class=&quot;separateur&quot;&gt;✦&lt;/div&gt;
 &lt;div class=&quot;de&quot;&gt;&lt;div class=&quot;de-texte&quot;&gt;
-Comment s&#x27;approcher de la marmite sans être vu ? &#x27;&#x27;Clique sur le dé.&#x27;&#x27;
+Comment s&#x27;approcher de la marmite sans être vu ? &#x27;&#x27;Clique sur l&#x27;éclat de lune.&#x27;&#x27;
 
 [[Un nombre pair : poursuis au chapitre 31.-&gt;Chapitre 31]]
 [[Un nombre impair : poursuis au chapitre 32.-&gt;Chapitre 32]]
