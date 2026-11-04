@@ -76,9 +76,10 @@ tw-story { overflow: clip; }
   display: flex;
   align-items: center;
   justify-content: center;
-  /* chiffres ronds et gras, plus doux que la police des titres */
-  font-family: "Fredoka", "Nunito", sans-serif;
-  font-weight: 600;
+  /* chiffres en Lora grasse, la police du texte du livre : plus douce et plus épaisse que celle des titres */
+  font-family: "Lora", Georgia, serif;
+  font-weight: 700;
+  font-variant-numeric: lining-nums;
   font-size: 5.6em;
   line-height: 1;
   color: #356bac;
@@ -107,7 +108,6 @@ tw-story { overflow: clip; }
   .de-virtuel::after { font-size: 4.2em; }
 }
 /* Polices rangées dans le dossier fonts/, à côté du fichier HTML */
-@font-face { font-family: "Fredoka"; font-style: normal; font-weight: 300 700; font-display: swap; src: url("fonts/Fredoka.woff2") format("woff2"); }
 @font-face { font-family: "Lora"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/Lora.woff2") format("woff2"); }
 @font-face { font-family: "Lora"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/Lora-italique.woff2") format("woff2"); }
 @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500 600; font-display: swap; src: url("fonts/CormorantGaramond.woff2") format("woff2"); }
