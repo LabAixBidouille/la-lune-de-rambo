@@ -339,6 +339,11 @@ tw-passage {
 }
 @media (max-width: 760px) {
   .garde { grid-template-columns: 1fr; gap: 1.5em; }
+  /* Sur téléphone, le titre peut passer à la ligne et les liens aussi : rien ne déborde de l'écran */
+  .garde { min-height: 0; }
+  .garde-texte h1 { white-space: normal; font-size: 2.6em; margin-top: 0; }
+  .menu .secondaires { flex-wrap: wrap; }
+  .menu .secondaires tw-link, .menu .secondaires .enchantment-link { white-space: normal; }
   .page { grid-template-columns: 1fr; gap: 1.5em; }
   .illustration { position: static; order: -1; }
 }
