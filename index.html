@@ -157,7 +157,7 @@ tw-passage {
 /* Page de garde et page de contexte */
 .garde {
   max-width: 84em;
-  min-height: calc(100vh - 6em);
+  min-height: calc(100vh - 3em);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
@@ -496,15 +496,18 @@ tw-sidebar { display: none; }
 }
 
 
-/* Lien discret vers la page qui réunit tous les livres de l'atelier, fixé dans le coin en haut à droite de l'écran, sur la page de garde */
+/* Lien discret vers la page qui réunit tous les livres de l'atelier, fixé dans le coin en haut à gauche de l'écran, sur la page de garde */
 .garde { position: relative; }
-.garde .autres-livres { position: fixed; top: 0.9em; right: 1.2em; z-index: 3; font-size: 0.78em; color: #7a8796; text-decoration: none; }
+.garde .autres-livres { position: fixed; top: 0.9em; left: 1.2em; z-index: 3; font-size: 0.78em; color: #7a8796; text-decoration: none; }
 .garde .autres-livres::after { content: " →"; }
 .garde .autres-livres:hover { color: #356bac; }
 @media (max-width: 760px) {
   .garde { padding-top: 2.2em !important; }
-  .garde .autres-livres { position: absolute; top: 0.5em; right: 0.4em; }
+  .garde .autres-livres { position: absolute; top: 0.5em; left: 0.4em; }
 }
+
+/* Couverture sans défilement : marges de la page réduites sur la page de garde seulement */
+tw-story:has(.garde) { padding-top: 1.5em; padding-bottom: 1.5em; }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
 document.addEventListener('click', function (evenement) {
   var de = evenement.target.closest('.de-virtuel');
